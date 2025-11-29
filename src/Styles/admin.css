@@ -1,0 +1,101 @@
+/* --- Contenedor global --- */
+.admin-panel-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 140px); /* entre navbar y footer */
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Sidebar lateral --- */
+.admin-sidebar {
+  width: 260px;
+  background-color: #212529;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 1rem;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: calc(100% - 20px);
+  border-radius: 12px;
+}
+
+/* --- Perfil --- */
+.admin-profile {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.admin-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3e40c4;
+  margin-bottom: 0.8rem;
+}
+
+.admin-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #f8f9fa;
+  letter-spacing: 1px;
+}
+
+/* --- Menú lateral --- */
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.admin-menu-item {
+  text-decoration: none;
+  color: #f8f9fa;
+  background-color: #343a40;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-menu-item:hover {
+  background-color: #0d6efd;
+  transform: scale(1.03);
+}
+
+/* --- Contenido principal --- */
+.admin-main {
+  flex-grow: 1;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: calc(100vh - 140px);
+}
+
+.admin-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 200px;
+  }
+}

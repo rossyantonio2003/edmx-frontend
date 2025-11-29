@@ -1,0 +1,107 @@
+/*src/Styles/footer.css*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.footer {
+  background-color: #212529;
+  color: #fff;
+  padding: 2rem 0;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* WhatsApp button */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+}
+
+.whatsapp-button img {
+  width: 100%;
+  height: 100%;
+}
+
+.footer a {
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #000000; /* amarillo suave al pasar el mouse */
+}
+
+.footer-link i {
+  margin-right: 5px;
+}
+
+.footer .btn {
+  transition: background-color 0.3s;
+}
+
+.footer .btn:hover {
+  background-color: #0056b3; /* azul más oscuro al hover */
+}
+
+/* Contenedor del mensaje */
+.whatsapp-bubble {
+  position: fixed;
+  bottom: 95px; /* justo encima del icono */
+  right: 25px;
+  background: #25d366;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  animation: fadeInOut 4s ease forwards;
+  z-index: 99999;
+  white-space: nowrap;
+}
+
+/* Animación */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+/* Icono flotante */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.whatsapp-button img {
+  width: 80%;
+}
+

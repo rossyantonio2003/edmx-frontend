@@ -1,0 +1,48 @@
+/* Contenedor principal */
+.admin-dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Tarjeta central */
+.admin-dashboard-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 14px;
+  max-width: 650px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Título */
+.admin-dashboard-title {
+  font-size: 28px;
+  font-weight: 700; /* Negrita */
+  font-family: "Poppins", sans-serif; /* Tipografía elegante */
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+/* Texto */
+.admin-dashboard-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: #555;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

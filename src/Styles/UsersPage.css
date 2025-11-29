@@ -1,0 +1,152 @@
+/* ===== 🎨 ESTILOS DEL MÓDULO DE USUARIOS ===== */
+
+/* 🔹 Contenedor principal */
+.users-container {
+  background: #ffffff;
+  padding: 25px 35px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* 🔹 Título principal */
+.users-title {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-left: 5px solid #6f42c1;
+  padding-left: 10px;
+}
+
+/* 🔹 Contenedor superior: búsqueda + botón */
+.users-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 🔹 Campo de búsqueda */
+.users-search-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  background-color: #f9fafb;
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+}
+
+.users-search-input:focus {
+  border-color: #6f42c1;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.2);
+}
+
+/* 🔹 Botón "Nuevo usuario" */
+.btn-add-user {
+  background-color: #6f42c1;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-add-user:hover {
+  background-color: #5a32a3;
+  transform: scale(1.03);
+}
+
+/* ===== 🧾 TABLA DE USUARIOS ===== */
+.users-table-wrapper {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.users-table th,
+.users-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.users-table th {
+  background-color: #6f42c1;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.users-table tr:hover {
+  background-color: #f6f2ff;
+}
+
+/* ===== 🏷️ ETIQUETAS DE ROL ===== */
+.role-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #fff;
+  display: inline-block;
+}
+
+.role-admin {
+  background-color: #28a745;
+}
+
+.role-client {
+  background-color: #6c757d;
+}
+
+/* ===== ⚙️ BOTÓN DE ACCIÓN (Editar, Ver, etc.) ===== */
+.btn-edit-role {
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s ease;
+}
+
+.btn-edit-role:hover {
+  background-color: #e0a800;
+}
+
+/* ===== 🚫 MENSAJE SIN USUARIOS ===== */
+.no-users-msg {
+  text-align: center;
+  color: #777;
+  padding: 25px;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+

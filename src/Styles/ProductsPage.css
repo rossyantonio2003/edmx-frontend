@@ -1,0 +1,249 @@
+/* Contenedor principal */
+.products-page {
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+/* Barra superior: búsqueda y botones */
+.top-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.top-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.top-bar button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.top-bar button:hover {
+  background-color: #0056b3;
+}
+
+/* Tabla de productos */
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.products-table th,
+.products-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.products-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.products-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.products-table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.products-table button.edit {
+  background-color: #ffc107;
+  color: white;
+  margin-right: 5px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.products-table button.delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Modal de creación/edición */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-card h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+/* Formulario dentro del modal */
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-form textarea {
+  resize: vertical;
+}
+
+/* Inputs tipo number sin flechas */
+.modal-form input[type=number]::-webkit-inner-spin-button, 
+.modal-form input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.modal-form input[type=number] { 
+  -moz-appearance: textfield;
+}
+
+/* Imagen dentro del modal */
+.image-uploader {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.image-uploader img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.image-uploader label {
+  display: inline-block;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Botones del modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-buttons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Animación modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .modal-card {
+    width: 90%;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.products-table tbody tr td {
+  vertical-align: middle; /* Centra el contenido verticalmente */
+}
+
+.products-table {
+  min-height: 300px; /* Mantiene tamaño aunque no haya filas */
+}
+
+.toast-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4
+}
+
+.products-table td {
+  vertical-align: top; /* Alinea el contenido al inicio de la celda */
+  word-break: break-word; /* Rompe palabras largas si es necesario */
+  white-space: normal; /* Permite que el texto haga wrap */
+  max-width: 200px; /* Ajusta este valor según tu diseño */
+}
+
+.products-table td.description {
+  max-width: 250px; /* ancho máximo para la descripción */
+  white-space: normal;
+  word-break: break-word;
+}
+
+.products-table td img {
+  width: 100px; /* ancho deseado */
+  height: 100px; /* alto deseado */
+  border-radius: 6px;
+  object-fit: cover;
+}
+

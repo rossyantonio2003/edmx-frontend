@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+
+body {
+  background: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.login-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 2px 60px -5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Carrusel con altura fija para que el formulario no cambie */
+.carousel-container {
+  width: 100%;
+  max-height: 400px; /* altura fija */
+  overflow: hidden;
+}
+
+.carousel-img-fixed {
+  height: 400px; /* altura fija */
+  width: 100%;
+  /*object-fit: cover; /* recorta las imágenes para mantener proporción */
+  object-fit: none;
+}
+
+.header-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #333;
+}
+
+.login-form {
+  max-width: 100%;
+}
+
+.login-form .form-control {
+  border-radius: 0;
+  margin-bottom: 20px;
+  padding: 12px 15px;
+}
+
+.login-form .btn {
+  border-radius: 0;
+  background: #3BC3FF;
+  border-color: #31c0ff;
+  width: 100%;
+  padding: 12px;
+  font-weight: 700;
+}
+
+.login-form .btn:hover {
+  background: #31c0ff;
+  border-color: #29a9e6;
+}
+
+.login-form a {
+  color: #3BC3FF;
+  text-decoration: none;
+}
+
+.login-form a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  .login-box {
+    padding: 30px;
+  }
+}
+
+
+
+

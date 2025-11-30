@@ -1,7 +1,7 @@
 //src/components/Footer.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import "./../styles/footer.css";
+import "./../Styles/footer.css";
 
 export default function Footer() {
   return (

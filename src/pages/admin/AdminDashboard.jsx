@@ -1,6 +1,6 @@
 // src/pages/admin/AdminDashboard.jsx
 import React from "react";
-import "../../styles/adminDashboard.css"; // Asegúrate de crear este archivo
+import "../../Styles/adminDashboard.css"; // Asegúrate de crear este archivo
 
 export default function AdminDashboard() {
   return (

@@ -9,7 +9,7 @@ import {
 } from "../services/addressService";
 import { getMyOrders } from "../services/orderService";
 
-import "../styles/profile.css";
+import "../Styles/profile.css";
 
 export default function Profile() {
 

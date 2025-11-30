@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { getProducts, createProduct, updateProduct, deleteProduct } from "../../services/productService";
 import { getCategories } from "../../services/categoryService";
-import "../../styles/ProductsPage.css";
+import "../../Styles/ProductsPage.css";
 import Swal from "sweetalert2";
 
 export default function ProductsPage() {

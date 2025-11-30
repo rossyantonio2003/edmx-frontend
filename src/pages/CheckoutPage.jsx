@@ -1,7 +1,7 @@
 //src/components/CheckoutPage.jsx
 import React from "react";
 import { useCart } from "../context/CartContext";
-import "../styles/checkout.css";
+import "../Styles/checkout.css";
 
 //imports para mercado pago
 import { useAuth } from "../context/AuthContext";

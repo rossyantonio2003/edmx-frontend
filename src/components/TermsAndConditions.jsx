@@ -1,6 +1,6 @@
 //src/components/TermsAndConditions.jsx
 import React from "react";
-import "./../styles/legal.css";
+import "./../Styles/legal.css";
 
 export default function TermsAndConditions() {
   return (

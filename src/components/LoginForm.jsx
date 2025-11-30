@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { Carousel } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import "./../styles/login.css";
+import "./../Styles/login.css";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
 

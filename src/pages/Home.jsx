@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "../components/Slider";
-import "../styles/home.css";
+import "../Styles/home.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

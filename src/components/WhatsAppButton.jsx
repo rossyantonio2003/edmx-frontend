@@ -1,6 +1,6 @@
 // src/components/WhatsAppButton.jsx
 import React, { useEffect, useState } from "react";
-import "./../styles/footer.css";
+import "./../Styles/footer.css";
 
 export default function WhatsAppButton() {
   const [showMessage, setShowMessage] = useState(false);

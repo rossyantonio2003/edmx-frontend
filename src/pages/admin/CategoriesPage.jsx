@@ -9,7 +9,7 @@ import {
 
 import Swal from "sweetalert2";
 import { FaEdit, FaTrash, FaPlus, FaTimes } from "react-icons/fa";
-import "./../../styles/CategoriesPage.css";
+import "./../../Styles/CategoriesPage.css";
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);

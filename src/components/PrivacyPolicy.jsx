@@ -1,6 +1,6 @@
 //src/components/PrivacyPolicy.jsx
 import React from "react";
-import "./../styles/legal.css";
+import "./../Styles/legal.css";
 
 export default function PrivacyPolicy() {
   return (

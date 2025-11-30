@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "../services/productService";
 import { useCart } from "../context/CartContext";
-import "../styles/catalog.css";
+import "../Styles/catalog.css";
 
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";

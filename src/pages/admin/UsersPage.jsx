@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { getUsers, registerUserByAdmin } from "../../services/userService";
 import Swal from "sweetalert2";
-import "../../styles/UsersPage.css";
+import "../../Styles/UsersPage.css";
 import { FaUserPlus, FaEdit, FaTrash, FaEye } from "react-icons/fa";
 
 const UsersPage = () => {

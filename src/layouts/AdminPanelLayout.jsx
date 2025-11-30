@@ -1,7 +1,7 @@
 //src/layouts/AdminPanelLayout.jsx
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import "../styles/admin.css";
+import "../Styles/admin.css";
 import adminImage from "../assets/admin.png";
 
 export default function AdminPanelLayout() {

@@ -12,7 +12,7 @@ import { getCategories } from "../services/categoryService"; //Importar servicio
 import logo from "../assets/logo.png";
 import { useCart } from "../context/CartContext"; //importar contexto del carrito
 import { FaShoppingCart } from "react-icons/fa"; //importar icono del carrito
-import "./../styles/navbar.css";
+import "./../Styles/navbar.css";
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);

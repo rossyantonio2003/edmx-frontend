@@ -156,14 +156,13 @@ import "../Styles/checkout.css";
 import { useAuth } from "../context/AuthContext";
 import { createOrder, createPreference } from "../services/paymentService";
 
+
 export default function CheckoutPage() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
   const shipping = cart.total > 5000 ? 0 : cart.items.length > 0 ? 150 : 0;
   const totalFinal = cart.total + shipping;
   const { token } = useAuth(); //para mercadoPago
-
-  // 🔹 URL global del backend
-  const API_URL = import.meta.env.VITE_API_URL;
+  
 
   const handleMercadoPago = async () => {
     try {
@@ -207,7 +206,7 @@ export default function CheckoutPage() {
             cart.items.map((item) => (
               <div key={item.id} className="cart-item">
                 <img
-                  src={`${API_URL}/uploads/${item.product.image}`} 
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
                   alt={item.product.name}
                   className="cart-image"
                 />
@@ -250,6 +249,7 @@ export default function CheckoutPage() {
             ))
           )}
         </div>
+
 
         {/* 💳 Resumen */}
         <div className="checkout-summary">

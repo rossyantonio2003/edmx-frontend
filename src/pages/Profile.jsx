@@ -296,27 +296,27 @@ export default function Profile() {
       <div className="profile-page">
         {/* --- LATERAL --- */   /*}
 <aside className="profile-sidebar">
-  <div className="profile-header">
-    <div className="avatar">{user.name ? user.name.charAt(0).toUpperCase() : "👤"}</div>
-    <div>
-      <h3>{user.name || "Usuario"}</h3>
-      <p>{user.email}</p>
-    </div>
-  </div>
+<div className="profile-header">
+<div className="avatar">{user.name ? user.name.charAt(0).toUpperCase() : "👤"}</div>
+<div>
+<h3>{user.name || "Usuario"}</h3>
+<p>{user.email}</p>
+</div>
+</div>
 
-  <ul className="profile-menu">
-    <li className={activeTab === "personal" ? "active" : ""} onClick={() => setActiveTab("personal")}>
-      DATOS PERSONALES
-    </li>
+<ul className="profile-menu">
+<li className={activeTab === "personal" ? "active" : ""} onClick={() => setActiveTab("personal")}>
+DATOS PERSONALES
+</li>
 
-    <li className={activeTab === "address" ? "active" : ""} onClick={() => setActiveTab("address")}>
-      INFORMACIÓN DE DOMICILIO
-    </li>
+<li className={activeTab === "address" ? "active" : ""} onClick={() => setActiveTab("address")}>
+INFORMACIÓN DE DOMICILIO
+</li>
 
-    <li className={activeTab === "orders" ? "active" : ""} onClick={() => setActiveTab("orders")}>
-      MIS PEDIDOS
-    </li>
-  </ul>
+<li className={activeTab === "orders" ? "active" : ""} onClick={() => setActiveTab("orders")}>
+MIS PEDIDOS
+</li>
+</ul>
 </aside>
 
 {/* --- CONTENIDO PRINCIPAL --- */     /*}
@@ -325,36 +325,36 @@ export default function Profile() {
 
   {/* PERFIL */     /*}
 {activeTab === "personal" && (
-  <>
-    {!editing ? (
-      <div className="profile-card fade-in">
-        <h2>INFORMACIÓN DE LA CUENTA</h2>
-        <p><strong>Nombre:</strong> {user.name}</p>
-        <p><strong>Correo:</strong> {user.email}</p>
-        <p><strong>Rol:</strong> {user.role === "admin" ? "Administrador" : "Cliente"}</p>
+<>
+  {!editing ? (
+    <div className="profile-card fade-in">
+      <h2>INFORMACIÓN DE LA CUENTA</h2>
+      <p><strong>Nombre:</strong> {user.name}</p>
+      <p><strong>Correo:</strong> {user.email}</p>
+      <p><strong>Rol:</strong> {user.role === "admin" ? "Administrador" : "Cliente"}</p>
 
-        <button className="btn btn-edit" onClick={() => setEditing(true)}>Editar Cuenta</button>
+      <button className="btn btn-edit" onClick={() => setEditing(true)}>Editar Cuenta</button>
+    </div>
+  ) : (
+    <form onSubmit={handleSubmitProfile} className="profile-form fade-in">
+      <h2>EDITAR PERFIL</h2>
+      <div className="form-group">
+        <label>Nombre</label>
+        <input type="text" name="name" value={user.name} onChange={handleChange} required />
       </div>
-    ) : (
-      <form onSubmit={handleSubmitProfile} className="profile-form fade-in">
-        <h2>EDITAR PERFIL</h2>
-        <div className="form-group">
-          <label>Nombre</label>
-          <input type="text" name="name" value={user.name} onChange={handleChange} required />
-        </div>
 
-        <div className="form-group">
-          <label>Correo electrónico</label>
-          <input type="email" name="email" value={user.email} onChange={handleChange} required />
-        </div>
+      <div className="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" name="email" value={user.email} onChange={handleChange} required />
+      </div>
 
-        <div className="profile-buttons">
-          <button type="submit" className="btn btn-primary">Guardar</button>
-          <button type="button" className="btn btn-cancel" onClick={() => setEditing(false)}>Cancelar</button>
-        </div>
-      </form>
-    )}
-  </>
+      <div className="profile-buttons">
+        <button type="submit" className="btn btn-primary">Guardar</button>
+        <button type="button" className="btn btn-cancel" onClick={() => setEditing(false)}>Cancelar</button>
+      </div>
+    </form>
+  )}
+</>
 )}
 
 {/* DIRECCIÓN */    /*}
@@ -445,20 +445,20 @@ export default function Profile() {
 
           {/* HEADER DEL PEDIDO */                     /*}
 <div className="order-header-profile">
-  <div className="order-header-left">
-    <p className="order-date-profile strong-date">
-      {new Date(order.createdAt).toLocaleDateString()}
-    </p>
-  </div>
+<div className="order-header-left">
+<p className="order-date-profile strong-date">
+{new Date(order.createdAt).toLocaleDateString()}
+</p>
+</div>
 
-  <div className="order-status-group-profile">
-    {/* Estado del Pedido */             /*}
+<div className="order-status-group-profile">
+{/* Estado del Pedido */             /*}
 <div className="badge-group-label">
-  <span className="badge-label">PEDIDO:</span>
+<span className="badge-label">PEDIDO:</span>
 
-  <span className={`badge pedido ${order.status}`}>
-    {translateOrderStatus(order.status)}
-  </span>
+<span className={`badge pedido ${order.status}`}>
+{translateOrderStatus(order.status)}
+</span>
 </div>
 
 {/* Estado del Pago */         /*}
@@ -510,6 +510,8 @@ export default function Profile() {
 }
 
 */
+
+
 
 
 // src/pages/Profile.jsx
@@ -579,8 +581,6 @@ export default function Profile() {
         return "text-gray-600 font-semibold";
     }
   };
-
-
 
   //-------------------- ESTADOS DE USUARIO --------------------
   const [user, setUser] = useState({ name: "", email: "", role: "" });

@@ -231,7 +231,7 @@ import { useCart } from "../context/CartContext";
 // Servicios
 import { getProducts } from "../services/productService";
 
-// Placeholder si no hay imagen
+// Placeholder si no hay imagen (puedes cambiar a tu propio asset)
 const PLACEHOLDER =
   "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-family='Arial, sans-serif' font-size='18'%3ESin imagen%3C/text%3E%3C/svg%3E";
 
@@ -244,16 +244,16 @@ export default function Home() {
 
   const [featuredProducts, setFeaturedProducts] = useState([]);
 
-  const API_URL = import.meta.env.VITE_API_URL; // ← ← ← aquí tomamos la URL global
-
   useEffect(() => {
     AOS.init({ duration: 1000, once: false, mirror: true });
 
+    // Cargar productos reales
     const loadProducts = async () => {
       try {
         const data = await getProducts();
+        // Si la API devuelve un objeto { products: [...] } ajusta aquí.
         const list = Array.isArray(data) ? data : data?.products || [];
-        setFeaturedProducts(list.slice(0, 6));
+        setFeaturedProducts(list.slice(0, 6)); // los primeros 6 productos
       } catch (err) {
         console.error("Error cargando productos:", err);
       }
@@ -266,39 +266,41 @@ export default function Home() {
     featuredRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // SOLO SE ACTUALIZARON LAS URLS ↓↓↓↓↓
+  // Construye la URL de la imagen probando varias propiedades
   const resolveImageSrc = (prod) => {
     if (!prod) return PLACEHOLDER;
-
+    // Si la API ya devuelve una URL absoluta
     if (prod.image && typeof prod.image === "string") {
+      // si image contiene '/' o ext, asumimos nombre de archivo: /uploads/<image>
       if (prod.image.startsWith("http")) return prod.image;
-      if (prod.image.startsWith("/")) return `${API_URL}${prod.image}`;
-      return `${API_URL}/uploads/${prod.image}`;
+      // si image tiene slash empezando por /uploads
+      if (prod.image.startsWith("/")) return `${import.meta.env.VITE_API_URL}${prod.image}`;
+      return `${import.meta.env.VITE_API_URL}/uploads/${prod.image}`;
     }
-
+    // Si devuelven imageUrl (ej: /uploads/..)
     if (prod.imageUrl) {
       if (prod.imageUrl.startsWith("http")) return prod.imageUrl;
-      return `${API_URL}${prod.imageUrl}`;
+      return `${import.meta.env.VITE_API_URL}${prod.imageUrl}`;
     }
-
-    if (prod.image_path) return `${API_URL}${prod.image_path}`;
-
+    // Otros posibles campos (por seguridad)
+    if (prod.image_path) return `${import.meta.env.VITE_API_URL}${prod.image_path}`;
     if (prod.img) {
       if (prod.img.startsWith("http")) return prod.img;
-      return `${API_URL}/uploads/${prod.img}`;
+      return `${import.meta.env.VITE_API_URL}/uploads/${prod.img}`;
     }
-
     return PLACEHOLDER;
   };
 
   const handleAddToCart = async (productId) => {
     if (!user) {
+      // Si se quiere que vaya primero a registro y después a login, usa /register
       navigate("/login");
       return;
     }
 
     try {
       await addToCart(productId, 1);
+      // ir al carrito después de agregar
       navigate("/checkout");
     } catch (err) {
       console.error("Error adding to cart:", err);
@@ -307,6 +309,7 @@ export default function Home() {
 
   return (
     <main className="home-container">
+      {/* SLIDER */}
       <div className="slider-container">
         <Slider />
         <div className="slider-text">
@@ -318,6 +321,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* PRODUCTOS DESTACADOS */}
       <section ref={featuredRef} className="featured-products" data-aos="fade-up">
         <h2 className="section-title">Productos Destacados</h2>
 
@@ -346,6 +350,7 @@ export default function Home() {
                   >
                     Agregar al carrito
                   </button>
+
                 </div>
               );
             })
@@ -353,6 +358,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SERVICIOS */}
       <section className="services" data-aos="fade-up">
         <h2 className="section-title">Nuestros servicios</h2>
         <div className="services-grid">
@@ -378,6 +384,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BENEFICIOS */}
       <section className="benefits" data-aos="fade-up">
         <h2 className="section-title">¿Por qué elegirnos?</h2>
         <div className="services-grid">
@@ -403,4 +410,3 @@ export default function Home() {
     </main>
   );
 }
-

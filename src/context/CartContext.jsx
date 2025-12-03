@@ -124,34 +124,32 @@ export const CartProvider = ({ children }) => {
 
 export const useCart = () => useContext(CartContext);
 
-*/
+codigo funcional pero redirigiendo a localhost:4000*/
+
 
 
 //src/context/CartContext.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"; //para notificaciones bonitas
 
 const CartContext = createContext();
-
-// 🔹 Tomamos la URL base del backend desde la variable de entorno
-const API_URL = import.meta.env.VITE_API_URL;
 
 export const CartProvider = ({ children }) => {
   const { user, token } = useContext(AuthContext);
   const [cart, setCart] = useState({ items: [], total: 0 });
   const [loading, setLoading] = useState(false);
 
-  // Cargar carrito al iniciar sesión
+  //Cargar carrito al iniciar sesión
   useEffect(() => {
     if (user && token) fetchCart();
   }, [user, token]);
 
-  // Obtener carrito actual desde backend
+  //Obtener carrito actual desde backend
   const fetchCart = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_URL}/api/cart`, {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/cart", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("Error al obtener carrito");
@@ -164,10 +162,10 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Agregar producto al carrito
+  //Agregar producto al carrito
   const addToCart = async (productId, quantity = 1) => {
     try {
-      const res = await fetch(`${API_URL}/api/cart/add`, {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -175,10 +173,8 @@ export const CartProvider = ({ children }) => {
         },
         body: JSON.stringify({ productId, quantity }),
       });
-
       if (!res.ok) throw new Error("Error al agregar producto al carrito");
-
-      await fetchCart();
+      await fetchCart(); // Refrescar carrito
       toast.success("Producto agregado al carrito 🛒");
     } catch (err) {
       console.error(err);
@@ -186,16 +182,14 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Eliminar producto del carrito
+  //Eliminar producto del carrito
   const removeFromCart = async (productId) => {
     try {
-      const res = await fetch(`${API_URL}/api/cart/remove/${productId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/remove/${productId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
-
       if (!res.ok) throw new Error("Error al eliminar producto");
-
       await fetchCart();
       toast.info("Producto eliminado del carrito 🗑️");
     } catch (err) {
@@ -204,10 +198,10 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Actualizar cantidad de producto
+  //Actualizar cantidad de producto
   const updateQuantity = async (productId, quantity) => {
     try {
-      const res = await fetch(`${API_URL}/api/cart/update`, {
+      const res = await fetch("${import.meta.env.VITE_API_URL}api/cart/update", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -215,9 +209,7 @@ export const CartProvider = ({ children }) => {
         },
         body: JSON.stringify({ productId, quantity }),
       });
-
       if (!res.ok) throw new Error("Error al actualizar cantidad");
-
       await fetchCart();
       toast.info("Cantidad actualizada 🧮");
     } catch (err) {
@@ -226,18 +218,16 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Vaciar carrito completo
+  //Vaciar carrito completo
   const clearCart = async () => {
     try {
-      const res = await fetch(`${API_URL}/api/cart/clear`, {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/cart/clear", {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
-
       if (!res.ok) throw new Error("Error al vaciar carrito");
-
       await fetchCart();
-      toast.warn("Carrito vacío 🧹");
+      toast.warn("Carrito vacio 🧹");
     } catch (err) {
       console.error(err);
       toast.error("No se pudo vaciar el carrito 😢");

@@ -116,23 +116,22 @@ export default function Catalog() {
   const [error, setError] = useState("");
   const { addToCart } = useCart();
 
+
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const API_URL = import.meta.env.VITE_API_URL; // 🔹 <--- Aquí usamos tu backend
 
   useEffect(() => {
     const fetchProductos = async () => {
       try {
         setLoading(true);
         const data = await getProducts();
-
         const productosFiltrados = categoria
           ? data.filter(
-              (p) =>
-                p.category &&
-                p.category.name.toLowerCase() === categoria.toLowerCase()
-            )
+            (p) =>
+              p.category &&
+              p.category.name.toLowerCase() === categoria.toLowerCase()
+          )
           : data;
 
         setProductos(productosFiltrados);
@@ -166,7 +165,7 @@ export default function Catalog() {
             <div key={p.id} className="product-card">
               <div className="product-img-container">
                 <img
-                  src={`${API_URL}/uploads/${p.image}`}  // ✅ URL actualizada
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${p.image}`}
                   alt={p.name}
                   className="product-img"
                 />
@@ -179,7 +178,7 @@ export default function Catalog() {
                   className="btn-add-cart"
                   onClick={() => {
                     if (!user) {
-                      navigate("/login");
+                      navigate("/login"); //a que direccion envia primero o cambiarlo a "/register"
                       return;
                     }
                     addToCart(p.id);
@@ -187,6 +186,7 @@ export default function Catalog() {
                 >
                   Agregar al carrito
                 </button>
+
               </div>
             </div>
           ))}

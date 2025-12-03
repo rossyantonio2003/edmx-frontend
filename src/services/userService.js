@@ -98,10 +98,12 @@ export const updateProfile = async (token, userData) => {
 };
 */
 
-// src/services/userService.js
-const API_URL = `${import.meta.env.VITE_API_URL}/users`; // url del backend
 
-// Listar usuarios (admin)
+
+//src/services/userService.js
+const API_URL = "${import.meta.env.VITE_API_URL}/api/users"; //url del backend
+
+//Listar usuarios (admin)
 export const getUsers = async (token) => {
   const res = await fetch(API_URL, {
     headers: { Authorization: `Bearer ${token}` },
@@ -109,7 +111,7 @@ export const getUsers = async (token) => {
   return res.json();
 };
 
-// Registrar usuario por parte del admin
+//Registrar usuario por parte del admin
 export const registerUserByAdmin = async (userData, token) => {
   try {
     const res = await fetch(`${API_URL}/register`, {
@@ -149,7 +151,6 @@ export const updateUserByAdmin = async (id, userData, token) => {
   }
 };
 
-// Eliminar usuario (admin)
 export const deleteUserByAdmin = async (id, token) => {
   try {
     const res = await fetch(`${API_URL}/${id}`, {
@@ -196,6 +197,3 @@ export const updateProfile = async (token, userData) => {
     return { error: true, message: err.message };
   }
 };
-
-
-

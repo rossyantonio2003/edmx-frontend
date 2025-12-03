@@ -345,15 +345,9 @@ export default function ProductsPage() {
 
 
 
-
 // src/pages/admin/ProductsPage.jsx
 import React, { useState, useEffect } from "react";
-import {
-  getProducts,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-} from "../../services/productService";
+import { getProducts, createProduct, updateProduct, deleteProduct } from "../../services/productService";
 import { getCategories } from "../../services/categoryService";
 import "../../Styles/ProductsPage.css";
 import Swal from "sweetalert2";
@@ -373,9 +367,7 @@ export default function ProductsPage() {
   const [previewImage, setPreviewImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
   const token = localStorage.getItem("token");
-  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchProducts();
@@ -433,11 +425,9 @@ export default function ProductsPage() {
       image: null,
       categoryId: product.categoryId || "",
     });
-
     setPreviewImage(
-      product.image ? `${API_URL}/uploads/${product.image}` : null
+      product.image ? `${import.meta.env.VITE_API_URL}/uploads/${product.image}` : null
     );
-
     setShowModal(true);
   };
 
@@ -454,7 +444,6 @@ export default function ProductsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const dataToSend = new FormData();
       dataToSend.append("name", formData.name);
@@ -462,7 +451,6 @@ export default function ProductsPage() {
       dataToSend.append("stock", formData.stock);
       dataToSend.append("description", formData.description);
       dataToSend.append("categoryId", formData.categoryId);
-
       if (formData.image) dataToSend.append("image", formData.image);
 
       if (formData.id) {
@@ -508,6 +496,7 @@ export default function ProductsPage() {
         <button onClick={() => setShowModal(true)}>Crear Producto</button>
       </div>
 
+
       <table className="products-table">
         <thead>
           <tr>
@@ -520,7 +509,6 @@ export default function ProductsPage() {
             <th>Acciones</th>
           </tr>
         </thead>
-
         <tbody>
           {filteredProducts.length > 0 ? (
             filteredProducts.map((p) => (
@@ -530,11 +518,10 @@ export default function ProductsPage() {
                 <td>{p.stock}</td>
                 <td className="description">{p.description}</td>
                 <td>{p.category?.name || "Sin categoría"}</td>
-
                 <td>
                   {p.image ? (
                     <img
-                      src={`${API_URL}/uploads/${p.image}`}
+                      src={`${import.meta.env.VITE_API_URL}/uploads/${p.image}`}
                       alt={p.name}
                       style={{
                         width: "100px",
@@ -547,7 +534,6 @@ export default function ProductsPage() {
                     "Sin imagen"
                   )}
                 </td>
-
                 <td>
                   <button
                     className="edit-icon"
@@ -564,7 +550,6 @@ export default function ProductsPage() {
                   >
                     ✎
                   </button>
-
                   <button
                     className="delete-icon"
                     onClick={() => handleDelete(p.id)}
@@ -593,17 +578,12 @@ export default function ProductsPage() {
         </tbody>
       </table>
 
-      {/* Modal */}
+      {/* Modal para crear/editar producto */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-card">
             <h3>{formData.id ? "Editar Producto" : "Crear Producto"}</h3>
-
-            <form
-              onSubmit={handleSubmit}
-              className="modal-form"
-              encType="multipart/form-data"
-            >
+            <form onSubmit={handleSubmit} className="modal-form" encType="multipart/form-data">
               <input
                 name="name"
                 placeholder="Nombre"
@@ -635,7 +615,6 @@ export default function ProductsPage() {
                 value={formData.description}
                 onChange={handleChange}
               />
-
               <select
                 name="categoryId"
                 value={formData.categoryId}
@@ -644,9 +623,7 @@ export default function ProductsPage() {
               >
                 <option value="">Selecciona Categoría</option>
                 {categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
+                  <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>
 
@@ -663,9 +640,7 @@ export default function ProductsPage() {
                         borderRadius: "6px",
                         cursor: "pointer",
                       }}
-                      onClick={() =>
-                        document.getElementById("imageInput").click()
-                      }
+                      onClick={() => document.getElementById("imageInput").click()}
                     />
                     <span
                       style={{
@@ -701,12 +676,8 @@ export default function ProductsPage() {
               </div>
 
               <div className="modal-buttons">
-                <button type="submit">
-                  {formData.id ? "Guardar Cambios" : "Crear Producto"}
-                </button>
-                <button type="button" onClick={() => setShowModal(false)}>
-                  Cancelar
-                </button>
+                <button type="submit">{formData.id ? "Guardar Cambios" : "Crear Producto"}</button>
+                <button type="button" onClick={() => setShowModal(false)}>Cancelar</button>
               </div>
             </form>
           </div>

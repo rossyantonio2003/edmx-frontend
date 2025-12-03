@@ -62,7 +62,10 @@ export const verifyToken = async (token) => {
 
 */
 
-const API_URL = `${import.meta.env.VITE_API_URL}/api/auth`; // URL del backend desde Vite
+
+
+//src/services/authService.js
+const API_URL = "${import.meta.env.VITE_API_URL}/api/auth"; //url del backend
 
 // Función para Registro
 export const registerUser = async (userData) => {
@@ -121,4 +124,3 @@ export const verifyToken = async (token) => {
     return { error: true, message: err.message };
   }
 };
-

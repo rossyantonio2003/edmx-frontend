@@ -50,16 +50,17 @@ export const createPayment = async (paymentData) => {
 // src/services/paymentService.js
 import axios from "axios";
 
-// URL desde variable de entorno
-const API_BASE = import.meta.env.VITE_API_URL;
+// URL
+const API_BASE = "${import.meta.env.VITE_API_URL}/api";
 const PAYMENTS_URL = `${API_BASE}/payments`;
 
 
-// Crear pedido + shipping (costo de envío)
+//Crear pedido + shipping (costo de envio)
+
 export const createOrder = async (token, shipping = 0) => {
   const res = await axios.post(
     `${API_BASE}/orders`,
-    { shipping }, // se envía costo de envío al backend
+    { shipping }, // se enviam costo de envio al backend
     {
       headers: {
         Authorization: `Bearer ${token}`,

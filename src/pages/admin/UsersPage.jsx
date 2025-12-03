@@ -271,9 +271,6 @@ const UsersPage = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const token = localStorage.getItem("token");
 
-  // ⭐ Se define la base del backend usando la variable
-  const API_URL = import.meta.env.VITE_API_URL;
-
   // 🔹 Cargar usuarios
   const fetchUsers = async () => {
     try {
@@ -380,8 +377,8 @@ const UsersPage = () => {
 
     if (formValues) {
       try {
-        // ⭐ URL actualizada (antes: http://localhost:4000/api/users/...)
-        const res = await fetch(`${API_URL}/api/users/${selectedUser.id}`, {
+        // Aquí agregarás tu endpoint updateUserByAdmin en userService.js
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${selectedUser.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -391,7 +388,6 @@ const UsersPage = () => {
         });
 
         if (!res.ok) throw new Error("Error al actualizar el usuario");
-
         Swal.fire("Éxito", "Usuario actualizado correctamente", "success");
         setSelectedUser(null);
         fetchUsers();
@@ -416,14 +412,11 @@ const UsersPage = () => {
 
     if (confirm.isConfirmed) {
       try {
-        // ⭐ URL actualizada
-        const res = await fetch(`${API_URL}/api/users/${selectedUser.id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${selectedUser.id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
         });
-
         if (!res.ok) throw new Error("Error al eliminar usuario");
-
         Swal.fire("Eliminado", "Usuario eliminado correctamente", "success");
         setSelectedUser(null);
         fetchUsers();

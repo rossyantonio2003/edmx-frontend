@@ -52,8 +52,9 @@ export const updateOrderStatus = async (id, status, token) => {
 */
 
 
+
 //src/services/orderService.js
-const API_URL = `${import.meta.env.VITE_API_URL}/api/orders`;
+const API_URL = "${import.meta.env.VITE_API_URL}/api/orders";
 
 // 🛍 Crear un nuevo pedido desde el carrito del usuario
 export const createOrder = async (token) => {
@@ -100,4 +101,3 @@ export const updateOrderStatus = async (id, status, token) => {
   if (!res.ok) throw new Error("Error al actualizar estado del pedido");
   return res.json();
 };
-

@@ -58,7 +58,7 @@ export const deleteAddress = async (token) => {
 // src/services/addressService.js
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_API_URL}/api/addresses`;
+const API_URL = "${import.meta.env.VITE_API_URL}/api/addresses";
 
 export const getAddress = async (token) => {
   try {
@@ -75,10 +75,7 @@ export const getAddress = async (token) => {
 export const createAddress = async (addressData, token) => {
   try {
     const res = await axios.post(API_URL, addressData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     });
     return res.data;
   } catch (err) {
@@ -90,10 +87,7 @@ export const createAddress = async (addressData, token) => {
 export const updateAddress = async (addressData, token) => {
   try {
     const res = await axios.put(API_URL, addressData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     });
     return res.data;
   } catch (err) {

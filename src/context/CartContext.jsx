@@ -149,7 +149,7 @@ export const CartProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       setLoading(true);
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/cart", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("Error al obtener carrito");
@@ -165,7 +165,7 @@ export const CartProvider = ({ children }) => {
   //Agregar producto al carrito
   const addToCart = async (productId, quantity = 1) => {
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/cart/add", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,7 +201,7 @@ export const CartProvider = ({ children }) => {
   //Actualizar cantidad de producto
   const updateQuantity = async (productId, quantity) => {
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}api/cart/update", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -221,7 +221,7 @@ export const CartProvider = ({ children }) => {
   //Vaciar carrito completo
   const clearCart = async () => {
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/cart/clear", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/clear`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -51,7 +51,7 @@ export const createPayment = async (paymentData) => {
 import axios from "axios";
 
 // URL
-const API_BASE = "${import.meta.env.VITE_API_URL}/api";
+const API_BASE = `${import.meta.env.VITE_API_URL}/api`;
 const PAYMENTS_URL = `${API_BASE}/payments`;
 
 

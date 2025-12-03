@@ -65,7 +65,7 @@ export const verifyToken = async (token) => {
 
 
 //src/services/authService.js
-const API_URL = "${import.meta.env.VITE_API_URL}/api/auth"; //url del backend
+const API_URL = `${import.meta.env.VITE_API_URL}/api/auth`; //url del backend
 
 // Función para Registro
 export const registerUser = async (userData) => {

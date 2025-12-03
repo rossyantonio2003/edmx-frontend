@@ -58,7 +58,7 @@ export const deleteAddress = async (token) => {
 // src/services/addressService.js
 import axios from "axios";
 
-const API_URL = "${import.meta.env.VITE_API_URL}/api/addresses";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/addresses`;
 
 export const getAddress = async (token) => {
   try {

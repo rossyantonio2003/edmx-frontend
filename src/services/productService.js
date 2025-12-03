@@ -52,7 +52,7 @@ export const deleteProduct = async (id, token) => {
 
 
 //src/services/productService.js
-const API_URL = "${import.meta.env.VITE_API_URL}/api/products";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/products`;
 
 export const getProducts = async () => {
   const res = await fetch(API_URL);

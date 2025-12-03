@@ -101,7 +101,7 @@ export const updateProfile = async (token, userData) => {
 
 
 //src/services/userService.js
-const API_URL = "${import.meta.env.VITE_API_URL}/api/users"; //url del backend
+const API_URL = `${import.meta.env.VITE_API_URL}/api/users`; //url del backend
 
 //Listar usuarios (admin)
 export const getUsers = async (token) => {

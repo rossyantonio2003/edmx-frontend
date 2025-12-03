@@ -59,7 +59,7 @@ export const deleteCategory = async (id, token) => {
 
 
 //src/services/categoryService.js
-const API_URL = "${import.meta.env.VITE_API_URL}/api/categories";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/categories`;
 
 //Obtener todas las categorías (público)
 export const getCategories = async () => {

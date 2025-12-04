@@ -317,14 +317,13 @@ export default function CheckoutPage() {
   const [preferenceId, setPreferenceId] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  // Inicializar MP (usa tu PUBLIC KEY de producción)
+  // Inicializar Mercado Pago
   useEffect(() => {
     initMercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
       locale: "es-MX",
     });
   }, []);
 
-  /*
   const handleMercadoPago = async () => {
     try {
       if (!token) {
@@ -332,28 +331,19 @@ export default function CheckoutPage() {
         return;
       }
 
-      /* ANTES ESTABA ASI SIN LA LINEA DE COIDGO QUE DICE //CAMBIAR
       // Crear orden
-      const order = await createOrder(token, shipping);
-
-      // Crear preferencia
-      //const pref = await createPreference(order.id, token); CAMBIAR
-      const pref = await createPreference(order.order.id, token);
-      
-
       const response = await createOrder(token, shipping);
       const orderId = response.order.id;
 
+      // Crear preferencia
       const pref = await createPreference(orderId, token);
-
-
 
       if (!pref.preferenceId) {
         alert("No se pudo generar el pago.");
         return;
       }
 
-      // Guardar preferenceId y mostrar modal
+      // Guardar preferenceId y abrir modal
       setPreferenceId(pref.preferenceId);
       setShowModal(true);
 
@@ -362,37 +352,6 @@ export default function CheckoutPage() {
       alert("Ocurrió un error al procesar tu pago.");
     }
   };
-  */
-
-  const handleMercadoPago = async () => {
-  try {
-    if (!token) {
-      alert("Debes iniciar sesión para continuar.");
-      return;
-    }
-
-    // Crear orden
-    const response = await createOrder(token, shipping);
-    const orderId = response.order.id;
-
-    // Crear preferencia
-    const pref = await createPreference(orderId, token);
-
-    if (!pref.preferenceId) {
-      alert("No se pudo generar el pago.");
-      return;
-    }
-
-    // Guardar preferenceId y mostrar modal
-    setPreferenceId(pref.preferenceId);
-    setShowModal(true);
-
-  } catch (error) {
-    console.error("Error al procesar pago:", error);
-    alert("Ocurrió un error al procesar tu pago.");
-  }
-};
-
 
   return (
     <>
@@ -501,7 +460,7 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      {/* 🟦 MODAL CON WALLET BRICK */}
+      {/* 🟦 Modal Mercado Pago */}
       {showModal && (
         <div className="mp-modal-overlay">
           <div className="mp-modal">
@@ -525,5 +484,3 @@ export default function CheckoutPage() {
     </>
   );
 }
-
-

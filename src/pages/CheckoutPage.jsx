@@ -297,32 +297,22 @@ CÓDIGO FUNCIOONAL REDIIRGIENDO A VITE_API_URL PERO SIN MODAL */
 
 
 
-// src/components/CheckoutPage.jsx
-import React, { useState, useEffect } from "react";
+//src/components/CheckoutPage.jsx
+import React from "react";
 import { useCart } from "../context/CartContext";
 import "../Styles/checkout.css";
 
-// Mercado Pago
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-
+//imports para mercado pago
 import { useAuth } from "../context/AuthContext";
 import { createOrder, createPreference } from "../services/paymentService";
+
 
 export default function CheckoutPage() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
   const shipping = cart.total > 5000 ? 0 : cart.items.length > 0 ? 150 : 0;
   const totalFinal = cart.total + shipping;
-  const { token } = useAuth();
-
-  const [preferenceId, setPreferenceId] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
-  // Inicializar Mercado Pago
-  useEffect(() => {
-    initMercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
-      locale: "es-MX",
-    });
-  }, []);
+  const { token } = useAuth(); //para mercadoPago
+  
 
   const handleMercadoPago = async () => {
     try {
@@ -331,22 +321,19 @@ export default function CheckoutPage() {
         return;
       }
 
-      // Crear orden
-      const response = await createOrder(token, shipping);
-      const orderId = response.order.id;
+      // 1. Crear pedido en backend + shipping (costo de envio)
+      const order = await createOrder(token, shipping);
 
-      // Crear preferencia
-      const pref = await createPreference(orderId, token);
+      // 2. Crear preferencia de Mercado Pago
+      const pref = await createPreference(order.id, token);
 
-      if (!pref.preferenceId) {
+      if (!pref.init_point) {
         alert("No se pudo generar el pago.");
         return;
       }
 
-      // Guardar preferenceId y abrir modal
-      setPreferenceId(pref.preferenceId);
-      setShowModal(true);
-
+      // 3. Redirigir a checkout Pro (Mercado Pago)
+      window.location.href = pref.init_point;
     } catch (error) {
       console.error("Error al procesar pago:", error);
       alert("Ocurrió un error al procesar tu pago.");
@@ -354,133 +341,103 @@ export default function CheckoutPage() {
   };
 
   return (
-    <>
-      <div className="checkout-page container">
-        <h2 className="checkout-title">🛍️ Finalizar compra</h2>
+    <div className="checkout-page container">
+      <h2 className="checkout-title">🛍️ Finalizar compra</h2>
 
-        <div className="checkout-layout">
+      <div className="checkout-layout">
+        {/* 🧾 Carrito */}
+<div className="checkout-items">
+  {cart.items.length === 0 ? (
+    <p className="empty-cart">
+      Tu carrito está vacío 🛒<br />
+      Agrega productos desde el catálogo para continuar.
+    </p>
+  ) : (
+    cart.items.map((item) => (
+      <div key={item.id} className="cart-item">
+        <img
+          src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
+          alt={item.product.name}
+          className="cart-image"
+        />
+        <div className="cart-info">
+          <h4>{item.product.name}</h4>
+          <p className="cart-price">${item.product.price.toLocaleString()}</p>
 
-          {/* 🧾 Carrito */}
-          <div className="checkout-items">
-            {cart.items.length === 0 ? (
-              <p className="empty-cart">
-                Tu carrito está vacío 🛒<br />
-                Agrega productos desde el catálogo para continuar.
-              </p>
-            ) : (
-              cart.items.map((item) => (
-                <div key={item.id} className="cart-item">
-                  <img
-                    src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
-                    alt={item.product.name}
-                    className="cart-image"
-                  />
-                  <div className="cart-info">
-                    <h4>{item.product.name}</h4>
-                    <p className="cart-price">${item.product.price.toLocaleString()}</p>
-
-                    <div className="cart-quantity-control">
-                      <button
-                        className="btn btn-sm btn-outline-secondary"
-                        onClick={() =>
-                          updateQuantity(item.productId, item.quantity - 1)
-                        }
-                        disabled={item.quantity <= 1}
-                      >
-                        ➖
-                      </button>
-
-                      <span className="cart-qty mx-2">{item.quantity}</span>
-
-                      <button
-                        className="btn btn-sm btn-outline-secondary"
-                        onClick={() =>
-                          updateQuantity(item.productId, item.quantity + 1)
-                        }
-                      >
-                        ➕
-                      </button>
-                    </div>
-
-                    <p className="cart-subtotal">
-                      Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
-                    </p>
-
-                    <button
-                      className="btn btn-danger btn-sm mt-2"
-                      onClick={() => removeFromCart(item.productId)}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
+          <div className="cart-quantity-control">
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              onClick={() =>
+                updateQuantity(item.productId, item.quantity - 1)
+              }
+              disabled={item.quantity <= 1}
+            >
+              ➖
+            </button>
+            <span className="cart-qty mx-2">{item.quantity}</span>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              onClick={() =>
+                updateQuantity(item.productId, item.quantity + 1)
+              }
+            >
+              ➕
+            </button>
           </div>
 
-          {/* 💳 Resumen */}
-          <div className="checkout-summary">
-            <h3>Resumen de pedido</h3>
-
-            {cart.items.length === 0 ? (
-              <p className="empty-summary">Aún no hay productos seleccionados.</p>
-            ) : (
-              <>
-                <div className="summary-row">
-                  <span>Subtotal:</span>
-                  <span>${cart.total.toLocaleString()}</span>
-                </div>
-
-                <div className="summary-row">
-                  <span>Envío:</span>
-                  <span>{shipping === 0 ? "Gratis" : `$${shipping}`}</span>
-                </div>
-
-                <div className="summary-row total">
-                  <span>Total:</span>
-                  <span>${totalFinal.toLocaleString()}</span>
-                </div>
-
-                <button
-                  className="btn btn-warning w-100 mt-3"
-                  onClick={clearCart}
-                >
-                  Vaciar carrito
-                </button>
-
-                <button
-                  className="btn btn-primary w-100 mt-2"
-                  onClick={handleMercadoPago}
-                >
-                  Proceder al pago
-                </button>
-              </>
-            )}
-          </div>
+          <p className="cart-subtotal">
+            Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
+          </p>
+          <button
+            className="btn btn-danger btn-sm mt-2"
+            onClick={() => removeFromCart(item.productId)}
+          >
+            Eliminar
+          </button>
         </div>
       </div>
+    ))
+  )}
+</div>
 
-      {/* 🟦 Modal Mercado Pago */}
-      {showModal && (
-        <div className="mp-modal-overlay">
-          <div className="mp-modal">
-            <button
-              className="mp-close-btn"
-              onClick={() => setShowModal(false)}
-            >
-              ✖
-            </button>
 
-            <h3>Completar Pago</h3>
+{/* 💳 Resumen */}
+<div className="checkout-summary">
+  <h3>Resumen de pedido</h3>
 
-            {preferenceId ? (
-              <Wallet initialization={{ preferenceId }} />
-            ) : (
-              <p>Cargando módulo de pago...</p>
-            )}
-          </div>
-        </div>
-      )}
+  {cart.items.length === 0 ? (
+    <p className="empty-summary">Aún no hay productos seleccionados.</p>
+  ) : (
+    <>
+      <div className="summary-row">
+        <span>Subtotal:</span>
+        <span>${cart.total.toLocaleString()}</span>
+      </div>
+
+      <div className="summary-row">
+        <span>Envío:</span>
+        <span>{shipping === 0 ? "Gratis" : `$${shipping}`}</span>
+      </div>
+
+      <div className="summary-row total">
+        <span>Total:</span>
+        <span>${totalFinal.toLocaleString()}</span>
+      </div>
+
+      <button
+        className="btn btn-warning w-100 mt-3"
+        onClick={clearCart}
+      >
+        Vaciar carrito
+      </button>
+
+      <button className="btn btn-primary w-100 mt-2" onClick={handleMercadoPago}>
+        Proceder al pago
+      </button>
     </>
-  );
+  )}
+</div>
+</div>
+</div>
+);
 }

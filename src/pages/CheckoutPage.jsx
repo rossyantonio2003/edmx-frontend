@@ -22,7 +22,6 @@ export default function CheckoutPage() {
         alert("Debes iniciar sesión para continuar.");
         return;
       }
-
       // 1. Crear pedido en backend + shipping (costo de envio)
       const order = await createOrder(token, shipping);
 
@@ -336,7 +335,9 @@ export default function CheckoutPage() {
       const order = await createOrder(token, shipping);
 
       // Crear preferencia
-      const pref = await createPreference(order.id, token);
+      //const pref = await createPreference(order.id, token); CAMBIAR
+      const pref = await createPreference(order.order.id, token);
+
 
       if (!pref.preferenceId) {
         alert("No se pudo generar el pago.");

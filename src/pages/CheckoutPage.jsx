@@ -314,6 +314,7 @@ export default function CheckoutPage() {
   const totalFinal = cart.total + shipping;
   const { token } = useAuth();
 
+  /*
   //nuevos estados para el modal
   const [showModal, setShowModal] = useState(false);
   const [preferenceId, setPreferenceId] = useState(null);
@@ -336,7 +337,9 @@ export default function CheckoutPage() {
       },
     });
   }, [showModal, preferenceId]);
+  */
 
+  /*
   const handleMercadoPago = async () => {
     try {
       if (!token) {
@@ -364,6 +367,43 @@ export default function CheckoutPage() {
       alert("Ocurrió un error al procesar tu pago.");
     }
   };
+  */
+
+  const handleMercadoPago = async () => {
+    try {
+      if (!token) {
+        alert("Debes iniciar sesión para continuar.");
+        return;
+      }
+
+      // 1. Crear pedido
+      const order = await createOrder(token, shipping);
+
+      // 2. Crear preferencia
+      const pref = await createPreference(order.id, token);
+
+      if (!pref.init_point) {
+        alert("No se pudo generar el pago.");
+        return;
+      }
+
+      // ⭐⭐⭐ ABRIR POP-UP REAL EN LUGAR DEL MODAL ⭐⭐⭐
+      const popup = window.open(
+        pref.init_point,
+        "mp_checkout",
+        "width=520,height=720,scrollbars=yes,resizable=yes"
+      );
+
+      if (!popup) {
+        alert("Tu navegador bloqueó la ventana emergente. Actívala para continuar.");
+      }
+
+    } catch (error) {
+      console.error("Error al procesar pago:", error);
+      alert("Ocurrió un error al procesar tu pago.");
+    }
+  };
+
 
   return (
     <div className="checkout-page container">
@@ -461,20 +501,6 @@ export default function CheckoutPage() {
           )}
         </div>
       </div>
-
-      {/* === MODAL DE MERCADO PAGO === */}
-      {showModal && (
-        <div className="mp-modal-overlay">
-          <div className="mp-modal">
-            <button className="mp-close-btn" onClick={() => setShowModal(false)}>
-              ✖
-            </button>
-
-            <h3>Completar pago</h3>
-            <div id="wallet_container"></div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

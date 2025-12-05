@@ -48,57 +48,57 @@ export default function CheckoutPage() {
       <div className="checkout-layout">
         {/* 🧾 Carrito */                      /*}
 <div className="checkout-items">
-  {cart.items.length === 0 ? (
-    <p className="empty-cart">
-      Tu carrito está vacío 🛒<br />
-      Agrega productos desde el catálogo para continuar.
-    </p>
-  ) : (
-    cart.items.map((item) => (
-      <div key={item.id} className="cart-item">
-        <img
-          src={`http://localhost:4000/uploads/${item.product.image}`}
-          alt={item.product.name}
-          className="cart-image"
-        />
-        <div className="cart-info">
-          <h4>{item.product.name}</h4>
-          <p className="cart-price">${item.product.price.toLocaleString()}</p>
+{cart.items.length === 0 ? (
+<p className="empty-cart">
+Tu carrito está vacío 🛒<br />
+Agrega productos desde el catálogo para continuar.
+</p>
+) : (
+cart.items.map((item) => (
+<div key={item.id} className="cart-item">
+<img
+src={`http://localhost:4000/uploads/${item.product.image}`}
+alt={item.product.name}
+className="cart-image"
+/>
+<div className="cart-info">
+<h4>{item.product.name}</h4>
+<p className="cart-price">${item.product.price.toLocaleString()}</p>
 
-          <div className="cart-quantity-control">
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() =>
-                updateQuantity(item.productId, item.quantity - 1)
-              }
-              disabled={item.quantity <= 1}
-            >
-              ➖
-            </button>
-            <span className="cart-qty mx-2">{item.quantity}</span>
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() =>
-                updateQuantity(item.productId, item.quantity + 1)
-              }
-            >
-              ➕
-            </button>
-          </div>
+<div className="cart-quantity-control">
+<button
+className="btn btn-sm btn-outline-secondary"
+onClick={() =>
+updateQuantity(item.productId, item.quantity - 1)
+}
+disabled={item.quantity <= 1}
+>
+➖
+</button>
+<span className="cart-qty mx-2">{item.quantity}</span>
+<button
+className="btn btn-sm btn-outline-secondary"
+onClick={() =>
+updateQuantity(item.productId, item.quantity + 1)
+}
+>
+➕
+</button>
+</div>
 
-          <p className="cart-subtotal">
-            Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
-          </p>
-          <button
-            className="btn btn-danger btn-sm mt-2"
-            onClick={() => removeFromCart(item.productId)}
-          >
-            Eliminar
-          </button>
-        </div>
-      </div>
-    ))
-  )}
+<p className="cart-subtotal">
+Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
+</p>
+<button
+className="btn btn-danger btn-sm mt-2"
+onClick={() => removeFromCart(item.productId)}
+>
+Eliminar
+</button>
+</div>
+</div>
+))
+)}
 </div>
 
 
@@ -199,57 +199,57 @@ export default function CheckoutPage() {
       <div className="checkout-layout">
         {/* 🧾 Carrito */                                        /*}
 <div className="checkout-items">
-  {cart.items.length === 0 ? (
-    <p className="empty-cart">
-      Tu carrito está vacío 🛒<br />
-      Agrega productos desde el catálogo para continuar.
-    </p>
-  ) : (
-    cart.items.map((item) => (
-      <div key={item.id} className="cart-item">
-        <img
-          src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
-          alt={item.product.name}
-          className="cart-image"
-        />
-        <div className="cart-info">
-          <h4>{item.product.name}</h4>
-          <p className="cart-price">${item.product.price.toLocaleString()}</p>
+{cart.items.length === 0 ? (
+<p className="empty-cart">
+Tu carrito está vacío 🛒<br />
+Agrega productos desde el catálogo para continuar.
+</p>
+) : (
+cart.items.map((item) => (
+<div key={item.id} className="cart-item">
+<img
+src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
+alt={item.product.name}
+className="cart-image"
+/>
+<div className="cart-info">
+<h4>{item.product.name}</h4>
+<p className="cart-price">${item.product.price.toLocaleString()}</p>
 
-          <div className="cart-quantity-control">
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() =>
-                updateQuantity(item.productId, item.quantity - 1)
-              }
-              disabled={item.quantity <= 1}
-            >
-              ➖
-            </button>
-            <span className="cart-qty mx-2">{item.quantity}</span>
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() =>
-                updateQuantity(item.productId, item.quantity + 1)
-              }
-            >
-              ➕
-            </button>
-          </div>
+<div className="cart-quantity-control">
+<button
+className="btn btn-sm btn-outline-secondary"
+onClick={() =>
+updateQuantity(item.productId, item.quantity - 1)
+}
+disabled={item.quantity <= 1}
+>
+➖
+</button>
+<span className="cart-qty mx-2">{item.quantity}</span>
+<button
+className="btn btn-sm btn-outline-secondary"
+onClick={() =>
+updateQuantity(item.productId, item.quantity + 1)
+}
+>
+➕
+</button>
+</div>
 
-          <p className="cart-subtotal">
-            Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
-          </p>
-          <button
-            className="btn btn-danger btn-sm mt-2"
-            onClick={() => removeFromCart(item.productId)}
-          >
-            Eliminar
-          </button>
-        </div>
-      </div>
-    ))
-  )}
+<p className="cart-subtotal">
+Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
+</p>
+<button
+className="btn btn-danger btn-sm mt-2"
+onClick={() => removeFromCart(item.productId)}
+>
+Eliminar
+</button>
+</div>
+</div>
+))
+)}
 </div>
 
 
@@ -297,8 +297,10 @@ CÓDIGO FUNCIOONAL REDIIRGIENDO A VITE_API_URL PERO SIN MODAL */
 
 
 
+
+
 //src/components/CheckoutPage.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import "../Styles/checkout.css";
 
@@ -306,13 +308,34 @@ import "../Styles/checkout.css";
 import { useAuth } from "../context/AuthContext";
 import { createOrder, createPreference } from "../services/paymentService";
 
-
 export default function CheckoutPage() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
   const shipping = cart.total > 5000 ? 0 : cart.items.length > 0 ? 150 : 0;
   const totalFinal = cart.total + shipping;
-  const { token } = useAuth(); //para mercadoPago
-  
+  const { token } = useAuth();
+
+  //nuevos estados para el modal
+  const [showModal, setShowModal] = useState(false);
+  const [preferenceId, setPreferenceId] = useState(null);
+
+  // === CARGAR WALLET BRICK CUANDO EL MODAL SE ABRE ===
+  useEffect(() => {
+    if (!showModal || !preferenceId) return;
+
+    const mp = new window.MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
+      locale: "es-MX",
+    });
+
+    const bricksBuilder = mp.bricks();
+
+    bricksBuilder.create("wallet", "wallet_container", {
+      initialization: { preferenceId },
+      callbacks: {
+        onReady: () => console.log("Brick cargado correctamente"),
+        onError: (error) => console.error("Error al cargar el brick:", error),
+      },
+    });
+  }, [showModal, preferenceId]);
 
   const handleMercadoPago = async () => {
     try {
@@ -321,7 +344,7 @@ export default function CheckoutPage() {
         return;
       }
 
-      // 1. Crear pedido en backend + shipping (costo de envio)
+      // 1. Crear pedido
       const order = await createOrder(token, shipping);
 
       // 2. Crear preferencia de Mercado Pago
@@ -332,8 +355,10 @@ export default function CheckoutPage() {
         return;
       }
 
-      // 3. Redirigir a checkout Pro (Mercado Pago)
-      window.location.href = pref.init_point;
+      // 3. Abrir modal (ya no redirección)
+      setPreferenceId(pref.preference_id);
+      setShowModal(true);
+
     } catch (error) {
       console.error("Error al procesar pago:", error);
       alert("Ocurrió un error al procesar tu pago.");
@@ -346,98 +371,110 @@ export default function CheckoutPage() {
 
       <div className="checkout-layout">
         {/* 🧾 Carrito */}
-<div className="checkout-items">
-  {cart.items.length === 0 ? (
-    <p className="empty-cart">
-      Tu carrito está vacío 🛒<br />
-      Agrega productos desde el catálogo para continuar.
-    </p>
-  ) : (
-    cart.items.map((item) => (
-      <div key={item.id} className="cart-item">
-        <img
-          src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
-          alt={item.product.name}
-          className="cart-image"
-        />
-        <div className="cart-info">
-          <h4>{item.product.name}</h4>
-          <p className="cart-price">${item.product.price.toLocaleString()}</p>
+        <div className="checkout-items">
+          {cart.items.length === 0 ? (
+            <p className="empty-cart">
+              Tu carrito está vacío 🛒<br />
+              Agrega productos desde el catálogo para continuar.
+            </p>
+          ) : (
+            cart.items.map((item) => (
+              <div key={item.id} className="cart-item">
+                <img
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${item.product.image}`}
+                  alt={item.product.name}
+                  className="cart-image"
+                />
+                <div className="cart-info">
+                  <h4>{item.product.name}</h4>
+                  <p className="cart-price">
+                    ${item.product.price.toLocaleString()}
+                  </p>
 
-          <div className="cart-quantity-control">
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() =>
-                updateQuantity(item.productId, item.quantity - 1)
-              }
-              disabled={item.quantity <= 1}
-            >
-              ➖
-            </button>
-            <span className="cart-qty mx-2">{item.quantity}</span>
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() =>
-                updateQuantity(item.productId, item.quantity + 1)
-              }
-            >
-              ➕
-            </button>
-          </div>
+                  <div className="cart-quantity-control">
+                    <button
+                      className="btn btn-sm btn-outline-secondary"
+                      onClick={() =>
+                        updateQuantity(item.productId, item.quantity - 1)
+                      }
+                      disabled={item.quantity <= 1}
+                    >
+                      ➖
+                    </button>
+                    <span className="cart-qty mx-2">{item.quantity}</span>
+                    <button
+                      className="btn btn-sm btn-outline-secondary"
+                      onClick={() =>
+                        updateQuantity(item.productId, item.quantity + 1)
+                      }
+                    >
+                      ➕
+                    </button>
+                  </div>
 
-          <p className="cart-subtotal">
-            Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
-          </p>
-          <button
-            className="btn btn-danger btn-sm mt-2"
-            onClick={() => removeFromCart(item.productId)}
-          >
-            Eliminar
-          </button>
+                  <p className="cart-subtotal">
+                    Subtotal: ${(item.product.price * item.quantity).toLocaleString()}
+                  </p>
+                  <button
+                    className="btn btn-danger btn-sm mt-2"
+                    onClick={() => removeFromCart(item.productId)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* 💳 Resumen */}
+        <div className="checkout-summary">
+          <h3>Resumen de pedido</h3>
+
+          {cart.items.length === 0 ? (
+            <p className="empty-summary">Aún no hay productos seleccionados.</p>
+          ) : (
+            <>
+              <div className="summary-row">
+                <span>Subtotal:</span>
+                <span>${cart.total.toLocaleString()}</span>
+              </div>
+
+              <div className="summary-row">
+                <span>Envío:</span>
+                <span>{shipping === 0 ? "Gratis" : `$${shipping}`}</span>
+              </div>
+
+              <div className="summary-row total">
+                <span>Total:</span>
+                <span>${totalFinal.toLocaleString()}</span>
+              </div>
+
+              <button className="btn btn-warning w-100 mt-3" onClick={clearCart}>
+                Vaciar carrito
+              </button>
+
+              <button className="btn btn-primary w-100 mt-2" onClick={handleMercadoPago}>
+                Proceder al pago
+              </button>
+            </>
+          )}
         </div>
       </div>
-    ))
-  )}
-</div>
 
+      {/* === MODAL DE MERCADO PAGO === */}
+      {showModal && (
+        <div className="mp-modal-overlay">
+          <div className="mp-modal">
+            <button className="mp-close-btn" onClick={() => setShowModal(false)}>
+              ✖
+            </button>
 
-{/* 💳 Resumen */}
-<div className="checkout-summary">
-  <h3>Resumen de pedido</h3>
-
-  {cart.items.length === 0 ? (
-    <p className="empty-summary">Aún no hay productos seleccionados.</p>
-  ) : (
-    <>
-      <div className="summary-row">
-        <span>Subtotal:</span>
-        <span>${cart.total.toLocaleString()}</span>
-      </div>
-
-      <div className="summary-row">
-        <span>Envío:</span>
-        <span>{shipping === 0 ? "Gratis" : `$${shipping}`}</span>
-      </div>
-
-      <div className="summary-row total">
-        <span>Total:</span>
-        <span>${totalFinal.toLocaleString()}</span>
-      </div>
-
-      <button
-        className="btn btn-warning w-100 mt-3"
-        onClick={clearCart}
-      >
-        Vaciar carrito
-      </button>
-
-      <button className="btn btn-primary w-100 mt-2" onClick={handleMercadoPago}>
-        Proceder al pago
-      </button>
-    </>
-  )}
-</div>
-</div>
-</div>
-);
+            <h3>Completar pago</h3>
+            <div id="wallet_container"></div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
